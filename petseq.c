@@ -249,7 +249,7 @@ static void randomizeNotes() {
 	int i;
 	
 	for(i = 0; i < 16; i++) {
-		notes[i] = rand() % 127;
+		notes[i] = rand() % 100;
 	}
 	
 	drawNotes();
@@ -260,7 +260,7 @@ static void stopSound() {
 }
 
 static void playSound() {
-	POKE( 0xE848, notes[step]);	
+	POKE( 0xE848, 100-notes[step]);	
 }
 
 static void doKeys() {
@@ -382,7 +382,7 @@ static void editMode() {
 			}
 			edit_string[edit_pos] = key_hit;
 			notes[step] = atoi(edit_string);
-			if(notes[step] > 128) notes[step] = 127;
+			if(notes[step] >= 100) notes[step] = 100;
 			if(notes[step] < 0) notes[step] = 0;
 			edit_pos++;
 			
